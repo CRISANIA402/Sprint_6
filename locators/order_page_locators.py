@@ -24,3 +24,6 @@ class OrderPageLocators:
     # Логотипы на странице заказа
     SCOOTER_LOGO_ON_ORDER_PAGE = [By.CLASS_NAME, "Header_LogoScooter__3lsAR"]
     YANDEX_LOGO_ON_ORDER_PAGE = [By.CLASS_NAME, "Header_LogoYandex__3TSOI"]
+
+    # Другие локаторы
+    RENTAL_PERIOD_OPTION = (By.XPATH, "//div[contains(@class, 'option') and text()='{period}']")
