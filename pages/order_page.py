@@ -2,25 +2,38 @@ import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 
 from pages.base_page import BasePage
 from locators.order_page_locators import OrderPageLocators
-from selenium.webdriver.common.keys import Keys
 
 
 class OrderPage(BasePage):
-    @allure.step("Заполнить первую форму")
+    @allure.step("Заполнить первую форму заказа")
     def fill_first_form(self, name, surname, address, metro, phone):
-        self.find_element(OrderPageLocators.NAME_FIELD).send_keys(name)
-        self.find_element(OrderPageLocators.SURNAME_FIELD).send_keys(surname)
-        self.find_element(OrderPageLocators.ADDRESS_FIELD).send_keys(address)
+        name_field = self.find_element(OrderPageLocators.NAME_FIELD)
+        name_field.clear()
+        name_field.send_keys(name)
+
+        surname_field = self.find_element(OrderPageLocators.SURNAME_FIELD)
+        surname_field.clear()
+        surname_field.send_keys(surname)
+
+        address_field = self.find_element(OrderPageLocators.ADDRESS_FIELD)
+        address_field.clear()
+        address_field.send_keys(address)
 
         metro_field = self.find_element(OrderPageLocators.METRO_FIELD)
+        metro_field.clear()
         metro_field.send_keys(metro)
-        metro_field.send_keys(Keys.DOWN)
-        metro_field.send_keys(Keys.ENTER)
 
-        self.find_element(OrderPageLocators.PHONE_FIELD).send_keys(phone)
+        self.wait_for_element_visible(OrderPageLocators.METRO_FIRST_OPTION, timeout=5)
+        self.click_element(OrderPageLocators.METRO_FIRST_OPTION)
+
+        phone_field = self.find_element(OrderPageLocators.PHONE_FIELD)
+        phone_field.clear()
+        phone_field.send_keys(phone)
+
         self.click_element(OrderPageLocators.NEXT_BUTTON)
 
     @allure.step("Заполнить вторую форму")

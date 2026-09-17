@@ -6,7 +6,7 @@ class OrderPageLocators:
     SURNAME_FIELD = [By.XPATH, "//input[@placeholder='* Фамилия']"]
     ADDRESS_FIELD = [By.XPATH, "//input[@placeholder='* Адрес: куда привезти заказ']"]
     METRO_FIELD = [By.XPATH, "//input[@placeholder='* Станция метро']"]
-    METRO_FIRST_OPTION = [By.CLASS_NAME, "select-search__input"]
+    METRO_FIRST_OPTION = [By.CLASS_NAME, "select-search__option"]
     PHONE_FIELD = [By.XPATH, "//input[@placeholder='* Телефон: на него позвонит курьер']"]
     NEXT_BUTTON = [By.XPATH, "//button[text()='Далее']"]
 

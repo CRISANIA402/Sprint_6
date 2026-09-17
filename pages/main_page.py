@@ -1,4 +1,5 @@
 import allure
+from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
@@ -53,3 +54,9 @@ class MainPage(BasePage):
     @allure.step("Клик по логотипу «Яндекс»")
     def click_yandex_logo(self):
         self.click_element(MainPageLocators.YANDEX_LOGO)
+
+    @allure.step("Переключиться на вкладку Дзена и дождаться загрузки")
+    def switch_to_dzen_tab_and_wait(self):
+        WebDriverWait(self.driver, 10).until(lambda d: len(d.window_handles) == 2)
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        WebDriverWait(self.driver, 10).until(lambda d: "dzen.ru" in d.current_url)

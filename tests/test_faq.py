@@ -1,7 +1,11 @@
+import allure
 import pytest
 from pages.main_page import MainPage
 
+
 class TestFAQ:
+
+    @allure.title("Проверка раскрытия ответа FAQ #{index + 1}")
     @pytest.mark.parametrize("index", list(range(8)))
     def test_faq_dropdown(self, driver, index):
         main_page = MainPage(driver)
